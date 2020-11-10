@@ -2850,6 +2850,7 @@ def ee_export_image(ee_object, filename, scale=None, crs=None, region=None, file
     try:
         z = zipfile.ZipFile(filename_zip)
         z.extractall(os.path.dirname(filename))
+        z.close() # in case the os.remove() doesn't work
         os.remove(filename_zip)
 
         if file_per_band:
